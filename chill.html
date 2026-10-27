@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chill — Schedule observer lab</title>
+</head>
+
+<body>
+    <ul>
+        <main class="main">
+        
+<section class="section breadcrumbs-block container-fluid">
+    <div class="row">
+        <div class="col">
+            <nav class="breadcrumbs-links" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    
+                        <li class="breadcrumb-item">
+                            
+                                <span>Родителям и ученикам</span>
+                            
+                        </li>
+                    
+                        <li class="breadcrumb-item">
+                            
+                                
+                                    <span>График каникул</span>
+                                
+                            
+                        </li>
+                    
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+        
+
+
+<div class="section container-fluid main-content my-5">
+    <p class="fs-2">График каникул</p>
+
+    
+    
+    <div>
+        <p></p><section class="section second-gallery-block two-items horizontal-items container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="multiple-slider slick-initialized slick-slider slick-dotted">
+
+                
+
+              <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 470px; transform: translate3d(0px, 0px, 0px);"><div class="multiple-slider-item slick-slide slick-current slick-active" tabindex="0" role="tabpanel" id="slick-slide30" aria-describedby="slick-slide-control30" style="width: 470px;" data-slick-index="0" aria-hidden="false">
+                  <div class="card w-100 h-100">
+<a href="#" data-file="/media/f/5904082398/Снимок_экрана_2026-10-03_095921.png" data-type="image" class="slider-image file-preview" tabindex="0">
+<img src="/media/f/5904082398/Снимок_экрана_2026-10-03_095921.png" alt="None">
+                    </a>
+
+                  </div>
+                </div></div></div><ul class="slick-dots" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control30" aria-controls="slick-slide30" aria-label="1 of 1" tabindex="0" aria-selected="true">1</button></li></ul></div>
+            </div>
+          </div>
+        </section><p></p>
+    </div>
+
+    
+
+
+
+<style>
+    #previewModal .modal-dialog {
+        max-width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    #previewModal .modal-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #previewModal .modal-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    #filePreviewContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    #filePreviewContainer img, #filePreviewContainer iframe {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+    }
+</style>
+
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="filePreviewContainer"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="prevFile">&lt;</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" id="nextFile">&gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var files = [];
+        var types = [];
+        $('.file-preview').each(function() {
+            files.push($(this).data('file'));
+            types.push($(this).data('type'));
+        });
+
+        var currentIndex = 0;
+
+        function showFile(index) {
+            var file = files[index];
+            var type = types[index];
+            var container = $('#filePreviewContainer');
+            container.empty();
+
+            if (type === 'image') {
+                    container.append('<img src="' + file + '" class="img-fluid" alt="Предварительный просмотр файла">');
+            } else if (type === 'pdf') {
+                    container.append('<iframe src="' + file + '" width="100%" height="100%"></iframe>');
+            }
+
+            $('#previewModal').modal('show');
+        }
+
+        $('.file-preview').on('click', function(event) {
+            event.preventDefault();
+            currentIndex = files.indexOf($(this).data('file'));
+            showFile(currentIndex);
+        });
+
+        $('#prevFile').on('click', function() {
+            currentIndex = (currentIndex - 1 + files.length) % files.length;
+            showFile(currentIndex);
+        });
+
+        $('#nextFile').on('click', function() {
+            currentIndex = (currentIndex + 1) % files.length;
+            showFile(currentIndex);
+        });
+    });
+</script>
+    
+
+      </div></main>
+    </ul>
+</body>
+</html>
